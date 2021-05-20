@@ -222,6 +222,9 @@ const Industry = styled.p`
 	font-size: 13px;
 	margin-left: 10px;
 	color: silver;
+	@media (max-width: 1000px){
+		font-size: 10px;
+	}
 `
 
 const CompanyName = styled.p`
@@ -298,7 +301,7 @@ const MarketCover = styled.div`
 
 const TopGainers = styled.div`
 	width: 30%;
-	height: 80%;
+	height: 100%;
 	background-color: #26003eff;
 	margin: 20px;
 	border-radius: 15px;
@@ -313,7 +316,7 @@ const TopGainers = styled.div`
 const CurrentMarket = styled.div`
 	display: flex;
 	width: 90%;
-	height: 70vh;
+	height: 24rem;
 	background-color: ;
 	justify-content: center;
 	align-items: center;
@@ -351,6 +354,7 @@ const Portfoliograph = styled.div`
 	border-radius: 15px;
 	h3, h2 {
 		color: white;
+		text-align: center;
 	}
 
 	h2 {
@@ -419,6 +423,9 @@ const Anchors = styled.div`
 		margin-right: 25px;
 		margin-left: 25px;
 		color: #fff;
+		@media (max-width: 1000px){
+			font-size: 10px;
+		}
 	}
 	height: 100%;
 	@media (max-width: 830px) {
