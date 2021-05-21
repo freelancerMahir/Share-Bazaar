@@ -70,7 +70,7 @@ function Dashboard() {
 		},
 		{
 			name:"SUMITPOWER",
-			by:"15%",
+			by:"1.5%",
 			type:"Fuel and Power"
 		},
 		{
@@ -141,7 +141,7 @@ function Dashboard() {
 							<a>About Us</a>
 						</Anchors>
 						<Search placeholder="Search Stock"/>
-						<SignOut style={{marginLeft: '100px'}}>
+						<SignOut>
 							<AvatarImg src={sessionStorage.getItem("ProfilePic")}/>
 							<DropDown>
 					              <span onClick={signout}>Sign out</span>
@@ -153,7 +153,87 @@ function Dashboard() {
 					<Portfoliograph>
 						<AddToQueueIcon style={{
 							color:"#fff",
-							fontSize: '80px',
+							fontSize: '10vw',
+						}}/>
+						<h2>Track your portfolio by adding more stocks</h2>
+						<h3>Currently you don't have any Portfolio Stocks</h3>
+						<AddPortfolioStock>Add Portfolio Stock</AddPortfolioStock>
+					</Portfoliograph>
+				</Portfoliogrowth>
+				<MarketCover>
+					<CurrentMarket>
+						<TopGainers>
+							
+							<TableTalk>
+								<h3>Top Gainers</h3>
+								{topgainers.map((ele) => (
+									<TableElements key={ele.name}>
+										<TableElementsSub>
+											<CompanyName>{ele.name}</CompanyName>
+											<Industry>{ele.type}</Industry>
+										</TableElementsSub>
+										<Percentage style={{color:"lightgreen"}}>{ele.by}</Percentage>
+									</TableElements>
+								))}
+							</TableTalk>
+						</TopGainers>
+						<TopGainers>
+							<h3>Top Losers</h3>
+							<TableTalk>
+								{toplosers.map((ele) => (
+									<TableElements>
+										<TableElementsSub>
+											<CompanyName>{ele.name}</CompanyName>
+											<Industry>{ele.type}</Industry>
+										</TableElementsSub>
+										<Percentage style={{color:'red'}}>{ele.by}</Percentage>
+									</TableElements>
+								))}
+							</TableTalk>
+						</TopGainers>
+						<TopGainers>
+							<h3>Most Traded</h3>
+							<TableTalk>
+								{mosttraded.map((ele) => (
+									<TableElements>
+										<TableElementsSub>
+											<CompanyName>{ele.name}</CompanyName>
+											<Industry>{ele.type}</Industry>
+										</TableElementsSub>
+										<Percentage style={{color:ele.poschange}}>{ele.by}</Percentage>
+									</TableElements>
+								))}
+							</TableTalk>
+						</TopGainers>
+					</CurrentMarket>
+				</MarketCover>
+			</Container>
+
+
+
+
+
+
+
+
+
+
+			<Mobile>
+				<Nav>
+					<Logo src="./images/Logomobile.svg.png"/>
+					<Search placeholder="Search Stock"/>
+					<SignOut style={{marginLeft: ''}}>
+							<AvatarImg src={sessionStorage.getItem("ProfilePic")}/>
+							<DropDown>
+					              <span onClick={signout}>Sign out</span>
+					        </DropDown>
+			    	</SignOut>
+				</Nav>
+				<Portfoliogrowth>
+					<Portfoliograph>
+						<AddToQueueIcon style={{
+							color:"#fff",
+							fontSize: '10vw',
 						}}/>
 						<h2>Track your portfolio by adding more stocks</h2>
 						<h3>Currently you don't have any Portfolio Stocks</h3>
@@ -206,14 +286,27 @@ function Dashboard() {
 						</TopGainers>
 					</CurrentMarket>
 				</MarketCover>
-			</Container>
+			</Mobile>
 		</div>
 	)
 }
+const Mobile = styled.div`
+	display: none;
+	background-color: black;
+	width: 100%;
+	height: 1000vh;
+	@media (max-width: 610px){
+		display: block;
+	}
+	font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+`
 
 
 const Percentage = styled.p`
 	margin-right: 10px;
+	@media (max-width: 680px){
+		font-size: 8px;
+	}
 `
 
 
@@ -225,12 +318,18 @@ const Industry = styled.p`
 	@media (max-width: 1000px){
 		font-size: 10px;
 	}
+	@media (max-width: 680px){
+		font-size: 6px;
+	}
 `
 
 const CompanyName = styled.p`
 	margin: 10px;
 	margin-bottom: 0;
 	font-size: 16px;
+	@media (max-width: 680px){
+		font-size: 10px;
+	}
 `
 
 
@@ -245,15 +344,65 @@ const TableElements = styled.div`
 	justify-content: space-between;
 	align-items: center;
 	width: 100%;
-	height: 50px;
+	height: 7vh;
 	background-color: black;
-	padding-top: 4px;
-	padding-bottom: 4px;
 	border: 1px solid gray;
+	@media (max-width: 680px){
+		height: 30px;
+	}
+	@media (max-width: 610px) {
+	}
 `
 
+
+const MarketCover = styled.div`
+	display: flex;
+	justify-content: center;
+	margin-top: 0px;
+`
+
+const TopGainers = styled.div`
+	width: 30%;
+	height: 100%;
+	background-color: #26003eff;
+	margin: 20px;
+	border-radius: 15px;
+	color: white;
+	@media (max-width: 680px){
+		height: 60%;
+	}
+	h3 {
+		text-align: center;
+		@media (max-width: 680px){
+			font-size: 12px;
+		}
+	}
+	@media (max-width: 610px) {
+		width: 100%;
+		height: 80%;
+	}
+`
+
+
+const CurrentMarket = styled.div`
+	display: flex;
+	width: 90%;
+	height: 24rem;
+	background-color: ;
+	justify-content: center;
+	align-items: center;
+	@media (max-width: 610px) {
+		flex-direction: column;
+	}
+	@media (max-width: 610px){
+		margin-top: 130px;
+	}
+`
+
+
+
+
 const TableElementsSub = styled.div`
-	position: relative;
 `
 
 const DropDown = styled.div`
@@ -283,43 +432,14 @@ const DropDown = styled.div`
 
 const SignOut = styled.div`
 	height: 60%;
+	width: 10%;
 	&:hover {
 		${DropDown} {
 	      opacity: 1;
 	      transition-duration: 1s;
 	    }
 	}
-`
 
-
-
-const MarketCover = styled.div`
-	display: flex;
-	justify-content: center;
-	margin-top: 0px;
-`
-
-const TopGainers = styled.div`
-	width: 30%;
-	height: 100%;
-	background-color: #26003eff;
-	margin: 20px;
-	border-radius: 15px;
-	color: white;
-
-	h3 {
-		text-align: center;
-	}
-`
-
-
-const CurrentMarket = styled.div`
-	display: flex;
-	width: 90%;
-	height: 24rem;
-	background-color: ;
-	justify-content: center;
-	align-items: center;
 `
 
 
@@ -341,6 +461,12 @@ const AddPortfolioStock = styled.button`
 		background-color: #0483ee;
 		cursor: pointer;
 	}
+	@media (max-width: 830px) {
+		font-size: 10px;
+	}
+	@media (max-width: 610px) {
+		padding: 5px;
+	}
 `
 
 const Portfoliograph = styled.div`
@@ -360,16 +486,29 @@ const Portfoliograph = styled.div`
 	h2 {
 		margin-bottom: 5px;
 	}
+	@media (max-width: 610px) {
+		width: 100%;
+		h3, h2 {
+			font-size: 3.5vw;
+		}
+	}
 `
 
 const Portfoliogrowth = styled.div`
 	display: flex;
 	justify-content: center;
-	padding: 50px;
+	padding: 20px;
 	width: 100%;
 	height: 90vh;
-	padding-bottom: 0;
 	margin-bottom: 0;
+	@media (max-width: 830px) {
+		font-size: 10px;
+		height: 60vh;
+	}
+	@media (max-width: 610px) {
+		font-size: 8px;
+		height: 50vh;
+	}
 `
 
 const Container = styled.div`
@@ -390,6 +529,9 @@ const Container = styled.div`
 	a,button {
 		transition: all 0.3s ease 0s;
 	}
+	@media (max-width: 610px){
+		display: none;
+	}
 `
 
 const Nav = styled.div`
@@ -398,8 +540,7 @@ const Nav = styled.div`
 	align-items: center;
 	width: 100%;
 	height: 10vh;
-	background-color: #26003eff;
-`
+	background-color: #26003eff;`
 
 const InnerNav = styled.div`
 	display: flex;
@@ -410,7 +551,7 @@ const InnerNav = styled.div`
 
 const Logo = styled.img`
 	flex: 0.25;
-	width: 150px;
+	width: 10vw;
 	height: 35px;
 `
 
@@ -423,21 +564,34 @@ const Anchors = styled.div`
 		margin-right: 25px;
 		margin-left: 25px;
 		color: #fff;
-		@media (max-width: 1000px){
-			font-size: 10px;
+		@media (max-width: 1200px){
+			font-size: 13px;
 		}
-	}
-	height: 100%;
-	@media (max-width: 830px) {
-		a {
+		@media (max-width: 1000px){
+			font-size: 9px;
+		}
+		@media (max-width: 830px) {
 			display: none;
 		}
 	}
+	height: 100%;
 `
 
 const Search = styled.input`
 	width: 20%;
 	font-size: 16px;
+	@media (max-width: 1200px){
+		font-size: 13px;
+	}
+	@media (max-width: 1000px){
+		font-size: 9px;
+	}
+	@media (max-width: 830px) {
+		width: 60%;
+		font-size: 11px;
+		margin-left: 8vw;
+	}
+	margin-right: 8vw;
 	padding: 5px;
 	&:focus {
 		border: 2px solid silver;
