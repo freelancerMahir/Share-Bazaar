@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import styled from 'styled-components'
 import { Avatar } from '@material-ui/core'
 import AddToQueueIcon from '@material-ui/icons/AddToQueue';
@@ -8,6 +8,8 @@ import { useHistory } from 'react-router-dom'
 function Dashboard() {
 
 	const history = useHistory();
+
+	const signoutref = useRef();
 
 	const starter = {
 		Name:'',
@@ -52,7 +54,7 @@ function Dashboard() {
 			type:"Food and Allied"
 		},
 		{
-			name:"UNILEVERCL",
+			name:"PRIMEBANK",
 			by:"15%",
 			type:"Food and Allied"
 		},
@@ -163,9 +165,8 @@ function Dashboard() {
 				<MarketCover>
 					<CurrentMarket>
 						<TopGainers>
-							
+							<h3>Top Gainers</h3>
 							<TableTalk>
-								<h3>Top Gainers</h3>
 								{topgainers.map((ele) => (
 									<TableElements key={ele.name}>
 										<TableElementsSub>
@@ -223,8 +224,8 @@ function Dashboard() {
 					<Logo src="./images/Logomobile.svg.png"/>
 					<Search placeholder="Search Stock"/>
 					<SignOut style={{marginLeft: ''}}>
-							<AvatarImg src={sessionStorage.getItem("ProfilePic")}/>
-							<DropDown>
+							<AvatarImg src={sessionStorage.getItem("ProfilePic")} onClick={() => {signoutref.current.style.display = "flex"}}/>
+							<DropDown ref={signoutref}>
 					              <span onClick={signout}>Sign out</span>
 					        </DropDown>
 			    	</SignOut>
@@ -240,62 +241,81 @@ function Dashboard() {
 						<AddPortfolioStock>Add Portfolio Stock</AddPortfolioStock>
 					</Portfoliograph>
 				</Portfoliogrowth>
-				<MarketCover>
-					<CurrentMarket>
-						<TopGainers>
-							<h3>Top Gainers</h3>
-							<TableTalk>
-								{topgainers.map((ele) => (
-									<TableElements>
-										<TableElementsSub>
-											<CompanyName>{ele.name}</CompanyName>
-											<Industry>{ele.type}</Industry>
-										</TableElementsSub>
-										<Percentage style={{color:"lightgreen"}}>{ele.by}</Percentage>
-									</TableElements>
-								))}
-							</TableTalk>
-						</TopGainers>
-						<TopGainers>
-							<h3>Top Losers</h3>
-							<TableTalk>
-								{toplosers.map((ele) => (
-									<TableElements>
-										<TableElementsSub>
-											<CompanyName>{ele.name}</CompanyName>
-											<Industry>{ele.type}</Industry>
-										</TableElementsSub>
-										<Percentage style={{color:'red'}}>{ele.by}</Percentage>
-									</TableElements>
-								))}
-							</TableTalk>
-						</TopGainers>
-						<TopGainers>
-							<h3>Most Traded</h3>
-							<TableTalk>
-								{mosttraded.map((ele) => (
-									<TableElements>
-										<TableElementsSub>
-											<CompanyName>{ele.name}</CompanyName>
-											<Industry>{ele.type}</Industry>
-										</TableElementsSub>
-										<Percentage style={{color:ele.poschange}}>{ele.by}</Percentage>
-									</TableElements>
-								))}
-							</TableTalk>
-						</TopGainers>
-					</CurrentMarket>
-				</MarketCover>
+				<MobileMarket>
+					<MobileGainersElement>
+						<h3>Top Gainers</h3>
+						<TableTalk>
+							{topgainers.map((ele) => (
+								<TableElements key={ele.name}>
+									<TableElementsSub>
+										<CompanyName>{ele.name}</CompanyName>
+										<Industry>{ele.type}</Industry>
+									</TableElementsSub>
+									<Percentage style={{color:"lightgreen"}}>{ele.by}</Percentage>
+								</TableElements>
+							))}
+						</TableTalk>
+					</MobileGainersElement>
+					<MobileGainersElement>
+						<h3>Top Losers</h3>
+						<TableTalk>
+							{toplosers.map((ele) => (
+								<TableElements>
+									<TableElementsSub>
+										<CompanyName>{ele.name}</CompanyName>
+										<Industry>{ele.type}</Industry>
+									</TableElementsSub>
+									<Percentage style={{color:'red'}}>{ele.by}</Percentage>
+								</TableElements>
+							))}
+						</TableTalk>
+					</MobileGainersElement>
+					<MobileGainersElement>
+						<h3>Most Traded</h3>
+						<TableTalk>
+							{mosttraded.map((ele) => (
+								<TableElements>
+									<TableElementsSub>
+										<CompanyName>{ele.name}</CompanyName>
+										<Industry>{ele.type}</Industry>
+									</TableElementsSub>
+									<Percentage style={{color:ele.poschange}}>{ele.by}</Percentage>
+								</TableElements>
+							))}
+						</TableTalk>
+					</MobileGainersElement>
+				</MobileMarket>
 			</Mobile>
 		</div>
 	)
 }
+
+const MobileGainersElement = styled.div`
+	color: white;
+	width: 80%;
+	background-color: #26003eff;
+	height: 270px;
+	h3 {
+		text-align: center;
+	}
+	border-radius: 16px;
+	margin: 10px;
+`
+
+
+
+const MobileMarket = styled.div`
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+`
+
 const Mobile = styled.div`
 	display: none;
 	background-color: black;
 	width: 100%;
 	height: 1000vh;
-	@media (max-width: 610px){
+	@media (max-width: 768px){
 		display: block;
 	}
 	font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
@@ -307,6 +327,9 @@ const Percentage = styled.p`
 	@media (max-width: 680px){
 		font-size: 8px;
 	}
+	@media (max-width: 1000px){
+		font-size: 12px;
+	}
 `
 
 
@@ -316,22 +339,26 @@ const Industry = styled.p`
 	margin-left: 10px;
 	color: silver;
 	@media (max-width: 1000px){
-		font-size: 10px;
+		font-size: 9px;
 	}
-	@media (max-width: 680px){
+	@media (max-width: 768px){
 		font-size: 6px;
 	}
 `
 
 const CompanyName = styled.p`
-	margin: 10px;
+	margin: 15px;
 	margin-bottom: 0;
-	font-size: 16px;
-	@media (max-width: 680px){
+	margin-left: 10px;
+	font-size: 15px;
+	@media (max-width: 768px){
 		font-size: 10px;
+		margin-top: 8px;
+	}
+	@media (max-width: 1000px){
+		font-size: 12px;
 	}
 `
-
 
 
 const TableTalk = styled.div`
@@ -344,10 +371,10 @@ const TableElements = styled.div`
 	justify-content: space-between;
 	align-items: center;
 	width: 100%;
-	height: 7vh;
+	height: 6vh;
 	background-color: black;
 	border: 1px solid gray;
-	@media (max-width: 680px){
+	@media (max-width: 768px){
 		height: 30px;
 	}
 	@media (max-width: 610px) {
@@ -373,7 +400,7 @@ const TopGainers = styled.div`
 	}
 	h3 {
 		text-align: center;
-		@media (max-width: 680px){
+		@media (max-width: 768px){
 			font-size: 12px;
 		}
 	}
@@ -387,7 +414,7 @@ const TopGainers = styled.div`
 const CurrentMarket = styled.div`
 	display: flex;
 	width: 90%;
-	height: 24rem;
+	height: 22rem;
 	background-color: ;
 	justify-content: center;
 	align-items: center;
@@ -410,7 +437,7 @@ const DropDown = styled.div`
   justify-content: center;
   position: absolute;
   top: 48px;
-  right: 0px;
+  right: 5%;
   background: rgb(19, 19, 19);
   border: 1px solid rgba(151, 151, 151, 0.34);
   border-radius: 4px;
@@ -423,6 +450,9 @@ const DropDown = styled.div`
   cursor: pointer;
   &:hover {
   	background-color: gray;
+  }
+  @media (max-width: 768px){
+  	display: none;
   }
 `;
 
@@ -529,7 +559,7 @@ const Container = styled.div`
 	a,button {
 		transition: all 0.3s ease 0s;
 	}
-	@media (max-width: 610px){
+	@media (max-width: 768px){
 		display: none;
 	}
 `
