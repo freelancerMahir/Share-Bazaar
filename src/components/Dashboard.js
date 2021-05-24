@@ -350,7 +350,7 @@ const CompanyName = styled.p`
 	margin: 15px;
 	margin-bottom: 0;
 	margin-left: 10px;
-	font-size: 15px;
+	font-size: 14px;
 	@media (max-width: 768px){
 		font-size: 10px;
 		margin-top: 8px;
@@ -528,6 +528,7 @@ const Portfoliogrowth = styled.div`
 	display: flex;
 	justify-content: center;
 	padding: 20px;
+	padding-top: 40px;
 	width: 100%;
 	height: 90vh;
 	margin-bottom: 0;
