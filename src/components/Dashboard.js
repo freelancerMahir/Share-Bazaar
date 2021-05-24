@@ -25,8 +25,6 @@ function Dashboard() {
 	}
 
 
-
-
 	const topgainers = [
 		{
 			name:"BEXIMCO",
@@ -138,7 +136,7 @@ function Dashboard() {
 						<Logo src="./images/spw.svg"/>
 						<Anchors>
 							<a>Share Bazaar</a>
-							<a>Analysis</a>
+							<a>News</a>
 							<a>Your Porftolio</a>
 							<a>About Us</a>
 						</Anchors>
@@ -146,9 +144,9 @@ function Dashboard() {
 						<SignOut>
 							<AvatarImg src={sessionStorage.getItem("ProfilePic")}/>
 							<DropDown>
-					              <span onClick={signout}>Sign out</span>
-					        </DropDown>
-				        </SignOut>
+								  <span onClick={signout}>Sign out</span>
+							</DropDown>
+						</SignOut>
 					</InnerNav>
 				</Nav>
 				<Portfoliogrowth>
@@ -226,9 +224,9 @@ function Dashboard() {
 					<SignOut style={{marginLeft: ''}}>
 							<AvatarImg src={sessionStorage.getItem("ProfilePic")} onClick={() => {signoutref.current.style.display = "flex"}}/>
 							<DropDown ref={signoutref}>
-					              <span onClick={signout}>Sign out</span>
-					        </DropDown>
-			    	</SignOut>
+								  <span onClick={signout}>Sign out</span>
+							</DropDown>
+					</SignOut>
 				</Nav>
 				<Portfoliogrowth>
 					<Portfoliograph>
@@ -285,10 +283,47 @@ function Dashboard() {
 						</TableTalk>
 					</MobileGainersElement>
 				</MobileMarket>
+				<MobileSuggestions>
+					
+				</MobileSuggestions>
+				<MobileNavbar>
+					<Linkers>Share Bazaar</Linkers>
+					<Linkers>Your Portfolio</Linkers>
+					<Linkers>News</Linkers>
+					<Linkers>About Us</Linkers>
+				</MobileNavbar>
 			</Mobile>
 		</div>
 	)
 }
+
+const MobileSuggestions = styled.div`
+
+`
+
+
+const MobileNavbar = styled.div`
+	background-color: #333;
+	overflow: hidden;
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+`
+
+const Linkers = styled.a`
+	float: left;
+	display: block;
+	color: #f2f2f2;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+	font-size: 12.7px;
+	&:hover {
+		background-color: #f1f1f1;
+		background-color: black;
+	}
+`
+
 
 const MobileGainersElement = styled.div`
 	color: white;
@@ -314,7 +349,7 @@ const Mobile = styled.div`
 	display: none;
 	background-color: black;
 	width: 100%;
-	height: 1000vh;
+	height: 300vh;
 	@media (max-width: 768px){
 		display: block;
 	}
@@ -337,13 +372,14 @@ const Industry = styled.p`
 	margin-top: 1px;
 	font-size: 13px;
 	margin-left: 10px;
-	color: silver;
+	color: rgb(151,151,151);
 	@media (max-width: 1000px){
 		font-size: 9px;
 	}
 	@media (max-width: 768px){
 		font-size: 6px;
 	}
+	font-weight: 500;
 `
 
 const CompanyName = styled.p`
@@ -358,6 +394,8 @@ const CompanyName = styled.p`
 	@media (max-width: 1000px){
 		font-size: 12px;
 	}
+	color: rgb(13, 110, 241);
+	font-weight: 500;
 `
 
 
@@ -449,10 +487,10 @@ const DropDown = styled.div`
   color: white;
   cursor: pointer;
   &:hover {
-  	background-color: gray;
+	background-color: gray;
   }
   @media (max-width: 768px){
-  	display: none;
+	display: none;
   }
 `;
 
@@ -465,9 +503,9 @@ const SignOut = styled.div`
 	width: 10%;
 	&:hover {
 		${DropDown} {
-	      opacity: 1;
-	      transition-duration: 1s;
-	    }
+		  opacity: 1;
+		  transition-duration: 1s;
+		}
 	}
 
 `

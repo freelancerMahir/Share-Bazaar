@@ -12,7 +12,7 @@ function Starter() {
 					<Logo src="./images/spw.svg"/>
 					<Anchors>
 						<a>Share Bazaar</a>
-						<a>Analysis</a>
+						<a>News</a>
 						<a>About Us</a>
 					</Anchors>
 					<Signup>
