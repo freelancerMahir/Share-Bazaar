@@ -3,6 +3,8 @@ import styled from 'styled-components'
 import { Avatar } from '@material-ui/core'
 import AddToQueueIcon from '@material-ui/icons/AddToQueue';
 import { useHistory } from 'react-router-dom'
+import Suggestions from './Suggestions'
+import Graph from './Portfoliogrowth'
 
 
 function Dashboard() {
@@ -149,7 +151,8 @@ function Dashboard() {
 						</SignOut>
 					</InnerNav>
 				</Nav>
-				<Portfoliogrowth>
+				<Graph />
+				{/*<Portfoliogrowth>
 					<Portfoliograph>
 						<AddToQueueIcon style={{
 							color:"#fff",
@@ -159,7 +162,8 @@ function Dashboard() {
 						<h3>Currently you don't have any Portfolio Stocks</h3>
 						<AddPortfolioStock>Add Portfolio Stock</AddPortfolioStock>
 					</Portfoliograph>
-				</Portfoliogrowth>
+				</Portfoliogrowth>*/}
+				<Suggestions />
 				<MarketCover>
 					<CurrentMarket>
 						<TopGainers>
@@ -239,6 +243,7 @@ function Dashboard() {
 						<AddPortfolioStock>Add Portfolio Stock</AddPortfolioStock>
 					</Portfoliograph>
 				</Portfoliogrowth>
+				<Suggestions />
 				<MobileMarket>
 					<MobileGainersElement>
 						<h3>Top Gainers</h3>
@@ -283,9 +288,6 @@ function Dashboard() {
 						</TableTalk>
 					</MobileGainersElement>
 				</MobileMarket>
-				<MobileSuggestions>
-					
-				</MobileSuggestions>
 				<MobileNavbar>
 					<Linkers>Share Bazaar</Linkers>
 					<Linkers>Your Portfolio</Linkers>
@@ -297,10 +299,6 @@ function Dashboard() {
 	)
 }
 
-const MobileSuggestions = styled.div`
-
-`
-
 
 const MobileNavbar = styled.div`
 	background-color: #333;
@@ -308,6 +306,8 @@ const MobileNavbar = styled.div`
 	position: fixed;
 	bottom: 0;
 	width: 100%;
+	display: flex;
+	justify-content: center;
 `
 
 const Linkers = styled.a`
@@ -322,6 +322,7 @@ const Linkers = styled.a`
 		background-color: #f1f1f1;
 		background-color: black;
 	}
+	cursor: pointer;
 `
 
 
@@ -542,8 +543,8 @@ const Portfoliograph = styled.div`
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	width: 70%;
-	height: 80%;
+	width: 100%;
+	height: 100%;
 	background-color: #26003eff;
 	border-radius: 15px;
 	h3, h2 {
@@ -565,11 +566,11 @@ const Portfoliograph = styled.div`
 const Portfoliogrowth = styled.div`
 	display: flex;
 	justify-content: center;
-	padding: 20px;
-	padding-top: 40px;
-	width: 100%;
-	height: 90vh;
-	margin-bottom: 0;
+	width: 90%;
+	height: 70vh;
+	margin: 0 auto;
+	margin-top: 75px;
+	margin-bottom: 50px;
 	@media (max-width: 830px) {
 		font-size: 10px;
 		height: 60vh;
