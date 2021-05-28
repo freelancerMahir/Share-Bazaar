@@ -1,9 +1,11 @@
 import React from 'react'
 import { Line, defaults } from 'react-chartjs-2'
+import styled from 'styled-components'
+
 
 const Graph = () => {
   return (
-    <div style={{marginTop:"65px",marginBottom:"75px",padding:"15px",backgroundColor:"white",borderRadius:"16px", width: "80%", margin:"0 auto","border":"13px solid #26003eff"}}>
+    <Gr style={{padding:"15px",backgroundColor:"white",borderRadius:"16px", width: "80%","border":"13px solid #26003eff"}}>
       <Line
         data={{
           labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
@@ -43,8 +45,18 @@ const Graph = () => {
           },
         }}
       />
-    </div>
+    </Gr>
   )
 }
+
+
+const Gr = styled.div`
+  margin: 0 auto;
+  margin-top: 75px;
+  margin-bottom: 75px;
+`
+
+
+
 
 export default Graph

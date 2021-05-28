@@ -11,7 +11,7 @@ function Starter() {
 				<InnerNav>
 					<Logo src="./images/spw.svg"/>
 					<Anchors>
-						<a>Share Bazaar</a>
+						<a>Market</a>
 						<a>News</a>
 						<a>About Us</a>
 					</Anchors>

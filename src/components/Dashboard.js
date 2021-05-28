@@ -8,8 +8,11 @@ import Graph from './Portfoliogrowth'
 
 
 function Dashboard() {
-
 	const history = useHistory();
+
+	if(sessionStorage.getItem("Name") == null) {
+		history.push("/auth")
+	}
 
 	const signoutref = useRef();
 
@@ -137,7 +140,7 @@ function Dashboard() {
 					<InnerNav>
 						<Logo src="./images/spw.svg"/>
 						<Anchors>
-							<a>Share Bazaar</a>
+							<a>Market</a>
 							<a>News</a>
 							<a>Your Porftolio</a>
 							<a>About Us</a>
@@ -232,7 +235,8 @@ function Dashboard() {
 							</DropDown>
 					</SignOut>
 				</Nav>
-				<Portfoliogrowth>
+				<Graph />
+				{/*<Portfoliogrowth>
 					<Portfoliograph>
 						<AddToQueueIcon style={{
 							color:"#fff",
@@ -242,7 +246,7 @@ function Dashboard() {
 						<h3>Currently you don't have any Portfolio Stocks</h3>
 						<AddPortfolioStock>Add Portfolio Stock</AddPortfolioStock>
 					</Portfoliograph>
-				</Portfoliogrowth>
+				</Portfoliogrowth>*/}
 				<Suggestions />
 				<MobileMarket>
 					<MobileGainersElement>
